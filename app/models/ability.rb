@@ -1,6 +1,7 @@
 class Ability
   include Hydra::Ability
-  
+  include Sufia::Ability
+
   # Define any customized permissions here.
   def custom_permissions
     # Limits deleting objects to a the admin user

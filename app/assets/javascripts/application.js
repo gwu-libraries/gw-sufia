@@ -12,8 +12,9 @@
 //
 //= require jquery
 //= require jquery_ujs
-//= require turbolinks
-//
-// Required by Blacklight
 //= require blacklight/blacklight
+//= require sufia
+//= require batch_edit
+//= require hydra/batch_select
+//= require hydra_collections
 //= require_tree .

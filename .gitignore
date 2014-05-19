@@ -25,3 +25,6 @@ config/hydra-ldap.yml
 
 # Ignore this file for security reasons
 config/initializers/secret_token.rb
+
+# Ignore jetty
+jetty/

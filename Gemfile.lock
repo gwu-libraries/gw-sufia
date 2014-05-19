@@ -105,6 +105,8 @@ GEM
     execjs (2.0.2)
     fastercsv (1.5.5)
     ffi (1.9.3)
+    font-awesome-rails (4.1.0.0)
+      railties (>= 3.2, < 5.0)
     font-awesome-sass-rails (3.0.2.2)
       railties (>= 3.1.1)
       sass-rails (>= 3.1.1)
@@ -370,6 +372,7 @@ DEPENDENCIES
   coffee-rails (~> 4.0.0)
   devise
   devise-guests (~> 0.3)
+  font-awesome-rails
   jbuilder (~> 1.2)
   jettywrapper
   jquery-rails

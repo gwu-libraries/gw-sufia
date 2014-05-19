@@ -32,24 +32,18 @@ group :doc do
   gem 'sdoc', require: false
 end
 
-# Use ActiveModel has_secure_password
-# gem 'bcrypt', '~> 3.1.7'
-
-# Use unicorn as the app server
-# gem 'unicorn'
-
-# Use Capistrano for deployment
-# gem 'capistrano', group: :development
-
-# Use debugger
-# gem 'debugger', group: [:development, :test]
 gem 'sufia'
 gem 'kaminari', github: 'harai/kaminari', branch: 'route_prefix_prototype'  # required to handle pagination properly in dashboard. See https://github.com/amatsuda/kaminari/pull/322
 
 gem "bootstrap-sass"
 gem "devise"
 gem "devise-guests", "~> 0.3"
+
 group :development, :test do
   gem "rspec-rails"
   gem "jettywrapper"
+end
+
+group :development do
+  gem 'unicorn-rails'
 end

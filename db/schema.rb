@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140519184047) do
+ActiveRecord::Schema.define(version: 20140519184050) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -38,6 +38,15 @@ ActiveRecord::Schema.define(version: 20140519184047) do
 
   add_index "checksum_audit_logs", ["pid", "dsid"], name: "by_pid_and_dsid", using: :btree
 
+  create_table "content_blocks", force: true do |t|
+    t.string   "name"
+    t.text     "value"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "content_blocks", ["name"], name: "index_content_blocks_on_name", unique: true, using: :btree
+
   create_table "domain_terms", force: true do |t|
     t.string "model"
     t.string "term"
@@ -52,6 +61,16 @@ ActiveRecord::Schema.define(version: 20140519184047) do
 
   add_index "domain_terms_local_authorities", ["domain_term_id", "local_authority_id"], name: "dtla_by_ids2", using: :btree
   add_index "domain_terms_local_authorities", ["local_authority_id", "domain_term_id"], name: "dtla_by_ids1", using: :btree
+
+  create_table "featured_works", force: true do |t|
+    t.integer  "order",           default: 5
+    t.string   "generic_file_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "featured_works", ["generic_file_id"], name: "index_featured_works_on_generic_file_id", using: :btree
+  add_index "featured_works", ["order"], name: "index_featured_works_on_order", using: :btree
 
   create_table "follows", force: true do |t|
     t.integer  "followable_id",                   null: false
@@ -145,6 +164,12 @@ ActiveRecord::Schema.define(version: 20140519184047) do
   end
 
   add_index "subject_local_authority_entries", ["lowerLabel"], name: "entries_by_lower_label", using: :btree
+
+  create_table "tinymce_assets", force: true do |t|
+    t.string   "file"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "trophies", force: true do |t|
     t.integer  "user_id"

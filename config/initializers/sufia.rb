@@ -63,7 +63,6 @@ Sufia.config do |config|
   # Map hostnames onto Google Analytics tracking IDs
   # config.google_analytics_id = 'UA-99999999-1'
 
-
   # Where to store tempfiles, leave blank for the system temp directory (e.g. /tmp)
   # config.temp_file_base = '/home/developer1'
 
@@ -76,6 +75,8 @@ Sufia.config do |config|
   # Specify the path to the file characterization tool:
   # config.fits_path = "fits.sh"
 
+  # Use Google Analytics for view/download stats
+  config.analytics = false
 end
 
 Date::DATE_FORMATS[:standard] = "%m/%d/%Y"

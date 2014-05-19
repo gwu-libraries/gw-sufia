@@ -4,7 +4,7 @@ require 'blacklight/catalog'
 require 'blacklight_advanced_search'
 
 # bl_advanced_search 1.2.4 is doing unitialized constant on these because we're calling ParseBasicQ directly
-require 'parslet'  
+require 'parslet'
 require 'parsing_nesting/tree'
 
 class CatalogController < ApplicationController
@@ -12,6 +12,7 @@ class CatalogController < ApplicationController
   # Extend Blacklight::Catalog with Hydra behaviors (primarily editing).
   include Hydra::Controller::ControllerBehavior
   include BlacklightAdvancedSearch::ParseBasicQ
+  include Sufia::Catalog
 
   # These before_filters apply the hydra access controls
   before_filter :enforce_show_permissions, :only=>:show
@@ -26,15 +27,15 @@ class CatalogController < ApplicationController
     super
     recent
     #also grab my recent docs too
-    recent_me    
+    recent_me
   end
 
   def recent
     if user_signed_in?
       # grab other people's documents
       (_, @recent_documents) = get_search_results(:q =>filter_not_mine,
-                                        :sort=>sort_field, :rows=>4)      
-    else 
+                                        :sort=>sort_field, :rows=>4)
+    else
       # grab any documents we do not know who you are
       (_, @recent_documents) = get_search_results(:q =>'', :sort=>sort_field, :rows=>4)
     end
@@ -55,7 +56,6 @@ class CatalogController < ApplicationController
   def self.modified_field
     solr_name('desc_metadata__date_modified', :stored_sortable, type: :date)
   end
-
 
   configure_blacklight do |config|
     ## Default parameters to send to solr for all search-like requests. See also SolrHelper#solr_search_params
@@ -153,7 +153,7 @@ class CatalogController < ApplicationController
         :pf => "#{title_name}"
       }
     end
-    
+
 
     # Now we see how to over-ride Solr request handler defaults, in this
     # case for a BL "search field", which is really a dismax aggregate
@@ -174,8 +174,6 @@ class CatalogController < ApplicationController
         :pf => solr_name
       }
     end
-
-
 
     config.add_search_field('creator') do |field|
       field.solr_parameters = { :"spellcheck.dictionary" => "creator" }
@@ -327,7 +325,6 @@ class CatalogController < ApplicationController
       }
     end
 
-
     # "sort results by" select (pulldown)
     # label in pulldown is followed by the name of the SOLR field to sort by and
     # whether the sort is ascending or descending (it must be asc or desc
@@ -354,22 +351,21 @@ class CatalogController < ApplicationController
     solr_parameters[:fq] << "#{Solrizer.solr_name("has_model", :symbol)}:\"info:fedora/afmodel:GenericFile\""
   end
 
-  def depositor 
+  def depositor
     #Hydra.config[:permissions][:owner] maybe it should match this config variable, but it doesn't.
     Solrizer.solr_name('depositor', :stored_searchable, type: :string)
   end
 
-  def filter_not_mine 
+  def filter_not_mine
     "{!lucene q.op=AND df=#{depositor}}-#{current_user.user_key}"
   end
 
-  def filter_mine 
+  def filter_mine
     "{!lucene q.op=AND df=#{depositor}}#{current_user.user_key}"
   end
 
   def sort_field
     "#{Solrizer.solr_name('system_create', :sortable)} desc"
   end
-
 
 end

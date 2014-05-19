@@ -17,3 +17,4 @@
 
 # Ignore locally-specific database.yml file
 /config/database.yml
+

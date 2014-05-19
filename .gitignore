@@ -15,5 +15,13 @@
 /log/*.log
 /tmp
 
-# Ignore locally-specific database.yml file
-/config/database.yml
+# Ignore locally-specific config files
+config/database.yml
+config/fedora.yml
+config/solr.yml
+config/redis.yml
+config/devise.yml
+config/hydra-ldap.yml
+
+# Ignore this file for security reasons
+config/initializers/secret_token.rb

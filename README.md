@@ -46,10 +46,16 @@ Installation
         % cp database.yml.template database.yml
         
         Edit database.yml to add your specific database names and credentials
+
+* Create a secret_token.rb file and generate its secret token
+
+        % cd initializers
+        % cp secret_token.rb.template secret_token.rb
+        % rake gw-sufia:generate_secret
         
 * Run the sufia generator:
 
-        % cd ..
+        % cd ../..
         % rails g sufia -f
         
 * Run the migrations

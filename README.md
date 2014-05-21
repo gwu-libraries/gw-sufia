@@ -11,7 +11,7 @@ Installation
 
 * Install ubuntu package dependencies:
         
-        % sudo apt-get install git postgresql libpq-dev redis-server nodejs
+        % sudo apt-get install git postgresql libpq-dev redis-server nodejs unzip open-jdk-6-jre
 
 * Install RVM
 
@@ -58,6 +58,10 @@ Installation
         % cd ../..
         % rails g sufia -f
         
+        Answer 'n' (no) when prompted whether to overwrite files.
+        
+* Edit config/routes.rb to match the file in the git repo (rails generate seems to overwrite it)
+        
 * Run the migrations
 
         % rake db:migrate
@@ -67,6 +71,13 @@ Installation
         % rake jetty:clean
         % rake jetty:config
         % rake jetty:start
+        
+* Verify that it's running
 
+        % rails s -p <port number>
+
+  And browse to the URL
+
+* Next: Google Analytics
 
         

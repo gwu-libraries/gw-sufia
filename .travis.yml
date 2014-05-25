@@ -10,5 +10,6 @@ notifications:
       - "kerchner@gwu.edu"
     on_success: "change"
     on_failure: "always"
+  flowdock: a1dbebd53392964fc6f4b82d7fc1a757
 services:
   - redis-server

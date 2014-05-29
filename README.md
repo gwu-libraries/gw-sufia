@@ -81,4 +81,24 @@ Installation
 
 * Next: Google Analytics
 
+* Next: Browse-everything
+
+* Install fits.sh
+
+  Go to http://code.google.com/p/fits/downloads/list and download a copy of fits to /usr/local/bin, and unpack it.
+  
+        % cd /usr/local/bin
+        % curl 'https://fits.googlecode.com/files/fits-0.6.2.zip' >> fits-0.6.2.zip
+        % unzip fits-0.6.2.zip
+
+  Add execute permissions to fits.sh
+  
+        % cd fits-0.6.2.zip
+        % sudo chmod a+x fits.sh
+        
+   In config/initializers/sufia.rb, uncomment the line with config.fits_path and add your fits location:
+   
+        config.fits_path = "/usr/local/bin/fits-0.6.2/fits.sh"
+
+
         

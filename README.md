@@ -11,7 +11,8 @@ Installation
 
 * Install ubuntu package dependencies:
         
-        % sudo apt-get install git postgresql libpq-dev redis-server nodejs unzip open-jdk-6-jre
+        % sudo apt-get update
+        % sudo apt-get install git postgresql libpq-dev redis-server nodejs unzip openjdk-6-jre
 
 * Install RVM
 

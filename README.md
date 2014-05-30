@@ -93,7 +93,7 @@ Installation
 
   Add execute permissions to fits.sh
   
-        % cd fits-0.6.2.zip
+        % cd fits-0.6.2
         % sudo chmod a+x fits.sh
         
    In config/initializers/sufia.rb, uncomment the line with config.fits_path and add your fits location:

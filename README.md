@@ -100,5 +100,11 @@ Installation
    
         config.fits_path = "/usr/local/bin/fits-0.6.2/fits.sh"
 
+* Start a Redis RESQUE queue
+
+  Run the included script to start a RESQUE pool for either the "production" or "development" environment.
+  
+        % ./script/restart_resque.sh <environment>
+
 
         

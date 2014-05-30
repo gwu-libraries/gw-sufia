@@ -88,7 +88,7 @@ Installation
   Go to http://code.google.com/p/fits/downloads/list and download a copy of fits to /usr/local/bin, and unpack it.
   
         % cd /usr/local/bin
-        % curl 'https://fits.googlecode.com/files/fits-0.6.2.zip' >> fits-0.6.2.zip
+        % wget https://fits.googlecode.com/files/fits-0.6.2.zip
         % unzip fits-0.6.2.zip
 
   Add execute permissions to fits.sh

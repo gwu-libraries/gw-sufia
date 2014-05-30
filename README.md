@@ -12,7 +12,7 @@ Installation
 * Install ubuntu package dependencies:
         
         % sudo apt-get update
-        % sudo apt-get install git postgresql libpq-dev redis-server nodejs unzip openjdk-6-jre clamav-daemon
+        % sudo apt-get install git postgresql libpq-dev redis-server nodejs unzip openjdk-6-jre clamav-daemon curl
 
 * Install RVM
 

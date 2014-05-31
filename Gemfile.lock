@@ -7,6 +7,46 @@ GIT
       actionpack (>= 3.0.0)
       activesupport (>= 3.0.0)
 
+GIT
+  remote: git://github.com/projecthydra/sufia.git
+  revision: 82ff8e2ee5b7e4001ebe2577d7f7bac986d7eb56
+  ref: 82ff8e2ee5b7e4001ebe2577d7f7bac986d7eb56
+  specs:
+    sufia (4.0.0.beta4)
+      blacklight (~> 5.0)
+      blacklight-gallery
+      blacklight_advanced_search (~> 5.0)
+      bootstrap_form (~> 2.1.1)
+      browse-everything (>= 0.4.0)
+      daemons (= 1.1.9)
+      font-awesome-sass-rails (~> 3.0)
+      hydra-batch-edit (>= 1.1.1, < 2.0.0)
+      hydra-collections (~> 2.0.2)
+      hydra-editor
+      mail_form
+      rails_autolink (~> 1.1.0)
+      sass-rails
+      sufia-models (= 4.0.0.beta4)
+      tinymce-rails (~> 4.0.19)
+      tinymce-rails-imageupload (~> 4.0.16.beta)
+      yaml_db (= 0.2.3)
+    sufia-models (4.0.0.beta4)
+      activerecord-import
+      activeresource (~> 4.0.0)
+      acts_as_follower (>= 0.1.1, < 0.3)
+      carrierwave (~> 0.9.0)
+      google-api-client (~> 0.7.1)
+      hydra-derivatives (~> 0.1)
+      hydra-head (~> 7.0.1)
+      legato (~> 0.3.0)
+      mailboxer (~> 0.12.0.rc2)
+      nest (~> 1.1.1)
+      noid (~> 0.6.6)
+      oauth2 (~> 0.9.3)
+      rails (~> 4.0, < 5.0.0)
+      resque (~> 1.23)
+      resque-pool (= 0.3.0)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -91,7 +131,10 @@ GEM
       sass-rails
       skydrive
     builder (3.1.4)
-    cancancan (1.8.0)
+    byebug (3.1.2)
+      columnize (~> 0.8)
+      debugger-linecache (~> 1.2)
+    cancancan (1.8.1)
     carrierwave (0.9.0)
       activemodel (>= 3.2.0)
       activesupport (>= 3.2.0)
@@ -105,7 +148,9 @@ GEM
       coffee-script-source
       execjs
     coffee-script-source (1.7.0)
+    columnize (0.8.9)
     daemons (1.1.9)
+    debugger-linecache (1.2.0)
     deprecation (0.1.0)
       activesupport
     devise (3.2.4)
@@ -159,7 +204,7 @@ GEM
     hike (1.2.3)
     hooks (0.3.6)
       uber (~> 0.0.4)
-    htmlentities (4.3.1)
+    htmlentities (4.3.2)
     httmultiparty (0.3.14)
       httparty (>= 0.7.3)
       mimemagic
@@ -217,8 +262,7 @@ GEM
     json (1.8.1)
     json-ld (1.1.4)
       rdf (~> 1.1)
-    jwt (0.1.13)
-      multi_json (>= 1.5)
+    jwt (1.0.0)
     kgio (2.9.2)
     launchy (2.4.2)
       addressable (~> 2.3)
@@ -248,7 +292,7 @@ GEM
     mail_form (1.5.0)
       actionmailer (>= 3.2, < 5)
       activemodel (>= 3.2, < 5)
-    mailboxer (0.12.0.rc1)
+    mailboxer (0.12.0.rc2)
       carrierwave (>= 0.5.8)
       foreigner (>= 0.9.1)
       rails (>= 3.2.0)
@@ -275,9 +319,9 @@ GEM
       i18n
       nokogiri
     oauth (0.4.7)
-    oauth2 (0.9.3)
+    oauth2 (0.9.4)
       faraday (>= 0.8, < 0.10)
-      jwt (~> 0.1.8)
+      jwt (~> 1.0)
       multi_json (~> 1.3)
       multi_xml (~> 0.5)
       rack (~> 1.2)
@@ -289,7 +333,7 @@ GEM
       nokogiri (>= 1.4.2)
       solrizer (~> 3.1.0)
     orm_adapter (0.5.0)
-    parslet (1.6.0)
+    parslet (1.6.1)
       blankslate (~> 2.0)
     pg (0.17.1)
     polyglot (0.3.4)
@@ -452,45 +496,11 @@ GEM
       sprockets (~> 2.8)
     stomp (1.3.2)
     subexec (0.2.3)
-    sufia (4.0.0.beta3)
-      blacklight (~> 5.0)
-      blacklight-gallery
-      blacklight_advanced_search (~> 5.0)
-      bootstrap_form (~> 2.1.1)
-      browse-everything (>= 0.4.0)
-      daemons (= 1.1.9)
-      font-awesome-sass-rails (~> 3.0)
-      hydra-batch-edit (>= 1.1.1, < 2.0.0)
-      hydra-collections (~> 2.0.2)
-      hydra-editor
-      mail_form
-      rails_autolink (~> 1.1.0)
-      sass-rails
-      sufia-models (= 4.0.0.beta3)
-      tinymce-rails (~> 4.0.19)
-      tinymce-rails-imageupload (~> 4.0.16.beta)
-      yaml_db (= 0.2.3)
-    sufia-models (4.0.0.beta3)
-      activerecord-import
-      activeresource (~> 4.0.0)
-      acts_as_follower (>= 0.1.1, < 0.3)
-      carrierwave (~> 0.9.0)
-      google-api-client (~> 0.7.1)
-      hydra-derivatives (~> 0.1)
-      hydra-head (~> 7.0.1)
-      legato (~> 0.3.0)
-      mailboxer (~> 0.12.0.rc1)
-      nest (~> 1.1.1)
-      noid (~> 0.6.6)
-      oauth2 (~> 0.9.3)
-      rails (~> 4.0, < 5.0.0)
-      resque (~> 1.23)
-      resque-pool (= 0.3.0)
     sxp (0.1.5)
     thor (0.19.1)
     thread_safe (0.3.3)
     tilt (1.4.1)
-    tinymce-rails (4.0.19)
+    tinymce-rails (4.0.28)
       railties (>= 3.1.1)
     tinymce-rails-imageupload (4.0.16.beta)
       railties (>= 3.2, < 5)
@@ -526,6 +536,7 @@ PLATFORMS
 
 DEPENDENCIES
   bootstrap-sass
+  byebug
   coffee-rails (~> 4.0.0)
   devise
   devise-guests (~> 0.3)
@@ -538,7 +549,7 @@ DEPENDENCIES
   rspec-rails
   sass-rails (~> 4.0.2)
   sdoc
-  sufia (= 4.0.0.beta3)
+  sufia!
   turbolinks
   uglifier (>= 1.3.0)
   unicorn-rails

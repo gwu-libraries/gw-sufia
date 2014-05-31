@@ -32,7 +32,7 @@ group :doc do
   gem 'sdoc', require: false
 end
 
-gem 'sufia', '4.0.0.beta3'
+gem 'sufia', github: 'projecthydra/sufia', ref: '82ff8e2ee5b7e4001ebe2577d7f7bac986d7eb56'
 gem 'kaminari', github: 'harai/kaminari', branch: 'route_prefix_prototype'  # required to handle pagination properly in dashboard. See https://github.com/amatsuda/kaminari/pull/322
 
 gem "bootstrap-sass"
@@ -42,6 +42,7 @@ gem "devise-guests", "~> 0.3"
 group :development, :test do
   gem "rspec-rails"
   gem "jettywrapper"
+  gem 'byebug' unless ENV['TRAVIS']
 end
 
 group :development do

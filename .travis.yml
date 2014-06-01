@@ -9,7 +9,7 @@ env:
   - CONTINUOUS_INTEGRATION=true
 before_script:
   - "cp config/database.yml.travis config/database.yml"
-  - "cp config/secret_token.rb.template config/secret_token.rb"
+  - "cp config/initializers/secret_token.rb.template config/initializers/secret_token.rb"
   - "bundle exec rake gw-sufia:generate_secret"
 notifications:
   email:

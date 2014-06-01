@@ -1,3 +1,4 @@
+# for travis integration
 test: &postgresql
   adapter: postgresql
   database: gwsufiatest

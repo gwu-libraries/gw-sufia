@@ -1,0 +1,3 @@
+test: &postgresql
+  adapter: postgresql
+  database: gwsufiatest

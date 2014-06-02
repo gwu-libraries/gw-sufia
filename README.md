@@ -100,7 +100,7 @@ with each cloud provider separately:
   Add this line to config/initializers/sufia.rb:
 
          config.browse_everything = BrowseEverything.config
-  
+
 
 * Install fits.sh
 

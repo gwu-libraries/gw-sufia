@@ -81,7 +81,26 @@ Installation
 
 * Next: Google Analytics
 
-* Next: Browse-everything
+* Configure Browse-everything
+
+  Copy config/browse_everything_providers.yml.template to config/browse_everything_providers.yml
+  and populate with application keys required by each provider.
+
+        % cd config
+        % cp browse_everything_providers.yml.template browse_everything_providers.yml
+
+  and edit browse_everything_providers.yml .  As noted at the browse-everything repo (https://github.com/projecthydra-labs/browse-everything/wiki/Configuring-browse-everything), you must register your application
+with each cloud provider separately:
+
+    * Skydrive: https://account.live.com/developers/applications/create
+    * Dropbox: https://www.dropbox.com/developers/apps/create
+    * Box: https://app.box.com/developers/services/edit/
+    * GoogleDrive: https://code.google.com/apis/console
+
+  Add this line to config/initializers/sufia.rb:
+
+         config.browse_everything = BrowseEverything.config
+  
 
 * Install fits.sh
 

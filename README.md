@@ -81,6 +81,22 @@ Installation
 
 * Next: Google Analytics
 
+  In _config/initializers/sufia.rb_, edit the config.analytics property to true:
+
+        config.analytics = true
+
+  Also in _config/initializers/sufia.rb_, uncomment config.google_analytics_id and set its value.  The value will typically be of the form _UA-12345678-1_.
+
+  Copy _config/analytics.yml.template_ to _config/analytics.yml_:
+
+        % cd config
+        % cp analytics.yml.template analytics.yml
+
+  Edit _config/analytics.yml_ - uncomment all lines starting with "analytics:"
+and populate the values with the OAuth values provided for the project in the
+Google Developers console.  See the README at https://github.com/projecthydra/sufia for additional guidance on setting up the project with Google Analytics
+(however, you do _not_ need to run the sufia:models:usagestats generator).
+
 * Next: Browse-everything
 
 * Install fits.sh

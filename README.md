@@ -9,6 +9,8 @@ This is the repository for the George Washington University Libraries Sufia inst
 Installation
 ------------
 
+### Dependencies
+
 * Install ubuntu package dependencies:
         
         % sudo apt-get update
@@ -20,7 +22,9 @@ Installation
         % source ~/.rvm/scripts/rvm
         % rvm install ruby-2.1.1
         
-       
+
+### Install
+
 * Get the gw-sufia code:
 
         % git clone https://github.com/gwu-libraries/gw-sufia.git
@@ -53,16 +57,7 @@ Installation
         % cd initializers
         % cp secret_token.rb.template secret_token.rb
         % rake gw-sufia:generate_secret
-        
-* Run the sufia generator:
 
-        % cd ../..
-        % rails g sufia -f
-        
-        Answer 'n' (no) when prompted whether to overwrite files.
-        
-* Edit config/routes.rb to match the file in the git repo (rails generate seems to overwrite it)
-        
 * Run the migrations
 
         % rake db:migrate
@@ -79,7 +74,7 @@ Installation
 
   And browse to the URL
 
-* Next: Google Analytics
+### Next: Google Analytics
 
   In _config/initializers/sufia.rb_, edit the config.analytics property to true:
 
@@ -97,9 +92,11 @@ and populate the values with the OAuth values provided for the project in the
 Google Developers console.  See the README at https://github.com/projecthydra/sufia for additional guidance on setting up the project with Google Analytics
 (however, you do _not_ need to run the sufia:models:usagestats generator).
 
-* Next: Browse-everything
+### Next: Browse-everything
 
-* Install fits.sh
+...Todo...
+
+### Install fits.sh
 
   Go to http://code.google.com/p/fits/downloads/list and download a copy of fits to /usr/local/bin, and unpack it.
   
@@ -116,11 +113,8 @@ Google Developers console.  See the README at https://github.com/projecthydra/su
    
         config.fits_path = "/usr/local/bin/fits-0.6.2/fits.sh"
 
-* Start a Redis RESQUE pool
+### Start a Redis RESQUE pool
 
   Run the included script to start a RESQUE pool for either the "production" or "development" environment.
   
-        % ./script/restart_resque.sh <environment>
-
-
-        
+        % RAILS_ENV=development rake resque:workers COUNT=3 QUEUE=* VERBOSE=1

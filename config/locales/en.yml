@@ -20,4 +20,25 @@
 # available at http://guides.rubyonrails.org/i18n.html.
 
 en:
-  hello: "Hello world"
+  blacklight:
+    application_name: "GwSufia"
+  sufia:
+    product_name:       "GwSufia"
+    institution_name:   "George Washington University"
+    institution_homepage_url: "#"
+    division_name:      "Gelman Library"
+    division_homepage_url:   "/"
+    upload_tooltip:   "Please accept Deposit Agreement before you can upload."
+    field_label:
+      based_near:        "Location"
+      description:       "Description"
+      tag:               "Keyword"
+      date_created:      "Date Created"
+      related_url:       "Related URL"
+      rights:            "Content License"
+      files:             "Upload Files"
+    search:
+      form:
+        q:
+          label:        "Search Collections"
+          placeholder:  "Type search here..."

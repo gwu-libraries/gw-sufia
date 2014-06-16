@@ -92,6 +92,8 @@ and populate the values with the OAuth values provided for the project in the
 Google Developers console.  See the README at https://github.com/projecthydra/sufia for additional guidance on setting up the project with Google Analytics
 (however, you do _not_ need to run the sufia:models:usagestats generator).
 
+Additionally, once you create the client ID and google generates a client email address, go to the google analytics admin page, select the account, click on User Management, add the client email address and grant it Read & Analyze permissions.
+
 ### Next: Browse-everything
 
 ...Todo...

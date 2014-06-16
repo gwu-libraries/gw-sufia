@@ -9,9 +9,12 @@ This is the repository for the George Washington University Libraries Sufia inst
 Installation
 ------------
 
+### Dependencies
+
 * Install ubuntu package dependencies:
         
-        % sudo apt-get install git postgresql libpq-dev redis-server nodejs unzip open-jdk-6-jre
+        % sudo apt-get update
+        % sudo apt-get install git postgresql libpq-dev redis-server nodejs unzip openjdk-6-jre clamav-daemon curl
 
 * Install RVM
 
@@ -19,7 +22,9 @@ Installation
         % source ~/.rvm/scripts/rvm
         % rvm install ruby-2.1.1
         
-       
+
+### Install
+
 * Get the gw-sufia code:
 
         % git clone https://github.com/gwu-libraries/gw-sufia.git
@@ -52,16 +57,7 @@ Installation
         % cd initializers
         % cp secret_token.rb.template secret_token.rb
         % rake gw-sufia:generate_secret
-        
-* Run the sufia generator:
 
-        % cd ../..
-        % rails g sufia -f
-        
-        Answer 'n' (no) when prompted whether to overwrite files.
-        
-* Edit config/routes.rb to match the file in the git repo (rails generate seems to overwrite it)
-        
 * Run the migrations
 
         % rake db:migrate
@@ -78,6 +74,49 @@ Installation
 
   And browse to the URL
 
-* Next: Google Analytics
+### Next: Google Analytics
 
+  In _config/initializers/sufia.rb_, edit the config.analytics property to true:
+
+        config.analytics = true
+
+  Also in _config/initializers/sufia.rb_, uncomment config.google_analytics_id and set its value.  The value will typically be of the form _UA-12345678-1_.
+
+  Copy _config/analytics.yml.template_ to _config/analytics.yml_:
+
+        % cd config
+        % cp analytics.yml.template analytics.yml
+
+  Edit _config/analytics.yml_ - uncomment all lines starting with "analytics:"
+and populate the values with the OAuth values provided for the project in the
+Google Developers console.  See the README at https://github.com/projecthydra/sufia for additional guidance on setting up the project with Google Analytics
+(however, you do _not_ need to run the sufia:models:usagestats generator).
+
+Additionally, once you create the client ID and google generates a client email address, go to the google analytics admin page, select the account, click on User Management, add the client email address and grant it Read & Analyze permissions.  (See https://support.google.com/analytics/answer/1009702?hl=en for more information)
+
+### Next: Browse-everything
+
+...Todo...
+
+### Install fits.sh
+
+  Go to http://code.google.com/p/fits/downloads/list and download a copy of fits to /usr/local/bin, and unpack it.
+  
+        % cd /usr/local/bin
+        % wget https://fits.googlecode.com/files/fits-0.6.2.zip
+        % unzip fits-0.6.2.zip
+
+  Add execute permissions to fits.sh
+  
+        % cd fits-0.6.2
+        % sudo chmod a+x fits.sh
         
+   In config/initializers/sufia.rb, uncomment the line with config.fits_path and add your fits location:
+   
+        config.fits_path = "/usr/local/bin/fits-0.6.2/fits.sh"
+
+### Start a Redis RESQUE pool
+
+  Run the included script to start a RESQUE pool for either the "production" or "development" environment.
+  
+        % RAILS_ENV=development rake resque:workers COUNT=3 QUEUE=* VERBOSE=1

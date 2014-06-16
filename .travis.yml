@@ -1,0 +1,22 @@
+language: ruby
+bundler_args: --without development
+rvm:
+  - "2.1.1"
+env:
+  global:
+  - NOKOGIRI_USE_SYSTEM_LIBRARIES=true
+  - JS=true
+  - CONTINUOUS_INTEGRATION=true
+before_script:
+  - "cp config/database.yml.travis config/database.yml"
+  - "cp config/initializers/secret_token.rb.template config/initializers/secret_token.rb"
+  - "bundle exec rake gw-sufia:generate_secret"
+notifications:
+  email:
+    recipients:
+      - "kerchner@gwu.edu"
+    on_success: "change"
+    on_failure: "always"
+  flowdock: a1dbebd53392964fc6f4b82d7fc1a757
+services:
+  - redis-server

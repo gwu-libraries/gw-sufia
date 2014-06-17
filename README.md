@@ -1,4 +1,4 @@
-gw-sufia
+gw-sufia [![Build Status](https://travis-ci.org/gwu-libraries/gw-sufia.png?branch=master)](https://travis-ci.org/gwu-libraries/gw-sufia)
 ========
 
 GWU Self-Deposit
@@ -158,3 +158,13 @@ with each cloud provider separately:
   Run the included script to start a RESQUE pool for either the "production" or "development" environment.
   
         % RAILS_ENV=development rake resque:workers COUNT=3 QUEUE=* VERBOSE=1
+
+# Admin Users
+
+As a stopgap with the current rudimentary implementation of user groups, to make an admin user with id USERID do the following:
+
+```ruby
+user = User.find(USERID)
+user.group_list = "registered;?;admin"
+user.save
+```

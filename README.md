@@ -136,10 +136,6 @@ with each cloud provider separately:
   
          https://<MY SERVER URL>:<PORT>/browse/connect
 
-  Add this line to config/initializers/sufia.rb:
-
-         config.browse_everything = BrowseEverything.config
-
 ### Install fits.sh
 
   Go to http://code.google.com/p/fits/downloads/list and download a copy of fits to /usr/local/bin, and unpack it.

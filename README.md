@@ -118,7 +118,23 @@ Additionally, once you create the client ID and google generates a client email 
 
 ### Next: Browse-everything
 
-...Todo...
+  Copy config/browse_everything_providers.yml.template to config/browse_everything_providers.yml
+  and populate with application keys required by each provider.
+
+        % cd config
+        % cp browse_everything_providers.yml.template browse_everything_providers.yml
+
+  and edit browse_everything_providers.yml .  As noted at the browse-everything repo (https://github.com/projecthydra-labs/browse-everything/wiki/Configuring-browse-everything), you must register your application
+with each cloud provider separately:
+
+    * Skydrive: https://account.live.com/developers/applications/create
+    * Dropbox: https://www.dropbox.com/developers/apps/create
+    * Box: https://app.box.com/developers/services/edit/
+    * GoogleDrive: https://code.google.com/apis/console
+
+  Note that the application must be configured with each of the above providers with a redirect URI of:
+  
+         https://<MY SERVER URL>:<PORT>/browse/connect
 
 ### Install fits.sh
 
@@ -132,10 +148,6 @@ Additionally, once you create the client ID and google generates a client email 
   
         % cd fits-0.6.2
         % sudo chmod a+x fits.sh
-        
-   In config/initializers/sufia.rb, uncomment the line with config.fits_path and add your fits location:
-   
-        config.fits_path = "/usr/local/bin/fits-0.6.2/fits.sh"
 
 ### Start a Redis RESQUE pool
 

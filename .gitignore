@@ -22,6 +22,7 @@ config/solr.yml
 config/redis.yml
 config/devise.yml
 config/hydra-ldap.yml
+config/browse_everything_providers.yml
 
 # Ignore this file for security reasons
 config/initializers/secret_token.rb

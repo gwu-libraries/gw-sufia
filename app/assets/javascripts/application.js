@@ -17,4 +17,5 @@
 //= require batch_edit
 //= require hydra/batch_select
 //= require hydra_collections
+//= require browse_everything
 //= require_tree .

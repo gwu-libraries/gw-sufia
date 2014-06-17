@@ -67,6 +67,30 @@ Installation
         % rake jetty:clean
         % rake jetty:config
         % rake jetty:start
+
+* Generate self signed certificate files for SSL
+
+        Generate a new server key
+        % openssl genrsa -des3 -out server.key 2048
+        Create an insecure server key
+        % openssl rsa -in server.key -out server.key.insecure
+        Replace your secure server key with your insecure server key
+        % mv server.key server.key.secure
+        % mv server.key.insecure server.key
+        Create a certificate signing request
+        % openssl req -new -key server.key -out server.csr
+        Create a self a signed certificate
+        % openssl x509 -req -days 365 -in server.csr -signkey server.key -out server.crt
+        
+* Install the self signed certificate and your server keys
+
+        % mkdir .ssl
+        % mv server.key .ssl/server.key
+        % mv server.crt .ssl/server.crt
+        
+* Start your thin server
+
+        % bundle exec thin start -p <port number> --ssl --ssl-key-file .ssl/server.key --ssl-cert-file .ssl/server.crt
         
 * Verify that it's running
 

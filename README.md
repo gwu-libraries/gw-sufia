@@ -9,6 +9,8 @@ This is the repository for the George Washington University Libraries Sufia inst
 Installation
 ------------
 
+### Dependencies
+
 * Install ubuntu package dependencies:
         
         % sudo apt-get update
@@ -20,7 +22,9 @@ Installation
         % source ~/.rvm/scripts/rvm
         % rvm install ruby-2.1.1
         
-       
+
+### Install
+
 * Get the gw-sufia code:
 
         % git clone https://github.com/gwu-libraries/gw-sufia.git
@@ -53,16 +57,7 @@ Installation
         % cd initializers
         % cp secret_token.rb.template secret_token.rb
         % rake gw-sufia:generate_secret
-        
-* Run the sufia generator:
 
-        % cd ../..
-        % rails g sufia -f
-        
-        Answer 'n' (no) when prompted whether to overwrite files.
-        
-* Edit config/routes.rb to match the file in the git repo (rails generate seems to overwrite it)
-        
 * Run the migrations
 
         % rake db:migrate
@@ -72,6 +67,28 @@ Installation
         % rake jetty:clean
         % rake jetty:config
         % rake jetty:start
+
+* Generate certificate files and keys for SSL
+
+        Create a new folder for your ssl certs & keys
+        % mkdir .ssl
+        % cd .ssl
+        Generate a new server key with a password
+        % openssl genrsa -des3 -out server.key 2048
+        Create an insecure server key without a password
+        % openssl rsa -in server.key -out server.key.insecure
+        Replace your secure server key with your insecure server key
+        % mv server.key server.key.secure
+        % mv server.key.insecure server.key
+        Create a certificate signing request *In production deployments you should provide this CSR to your cerificate authority to generate a signed certificate*
+        % openssl req -new -key server.key -out server.csr *this _may_ require sudo; try first without
+        Create a self a signed certificate *Should not be used in production deployments*
+        % openssl x509 -req -days 365 -in server.csr -signkey server.key -out server.crt
+        
+* Start your thin server
+
+        % cd ..
+        % thin start -p <port number> --ssl --ssl-key-file .ssl/server.key --ssl-cert-file .ssl/server.crt
         
 * Verify that it's running
 
@@ -79,9 +96,27 @@ Installation
 
   And browse to the URL
 
-* Next: Google Analytics
+### Next: Google Analytics
 
-* Configure Browse-everything
+  In _config/initializers/sufia.rb_, edit the config.analytics property to true:
+
+        config.analytics = true
+
+  Also in _config/initializers/sufia.rb_, uncomment config.google_analytics_id and set its value.  The value will typically be of the form _UA-12345678-1_.
+
+  Copy _config/analytics.yml.template_ to _config/analytics.yml_:
+
+        % cd config
+        % cp analytics.yml.template analytics.yml
+
+  Edit _config/analytics.yml_ - uncomment all lines starting with "analytics:"
+and populate the values with the OAuth values provided for the project in the
+Google Developers console.  See the README at https://github.com/projecthydra/sufia for additional guidance on setting up the project with Google Analytics
+(however, you do _not_ need to run the sufia:models:usagestats generator).
+
+Additionally, once you create the client ID and google generates a client email address, go to the google analytics admin page, select the account, click on User Management, add the client email address and grant it Read & Analyze permissions.  (See https://support.google.com/analytics/answer/1009702?hl=en for more information)
+
+### Next: Browse-everything
 
   Copy config/browse_everything_providers.yml.template to config/browse_everything_providers.yml
   and populate with application keys required by each provider.
@@ -101,8 +136,7 @@ with each cloud provider separately:
 
          config.browse_everything = BrowseEverything.config
 
-
-* Install fits.sh
+### Install fits.sh
 
   Go to http://code.google.com/p/fits/downloads/list and download a copy of fits to /usr/local/bin, and unpack it.
   
@@ -119,11 +153,8 @@ with each cloud provider separately:
    
         config.fits_path = "/usr/local/bin/fits-0.6.2/fits.sh"
 
-* Start a Redis RESQUE pool
+### Start a Redis RESQUE pool
 
   Run the included script to start a RESQUE pool for either the "production" or "development" environment.
   
-        % ./script/restart_resque.sh <environment>
-
-
-        
+        % RAILS_ENV=development rake resque:workers COUNT=3 QUEUE=* VERBOSE=1

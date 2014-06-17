@@ -1,10 +1,10 @@
 class User < ActiveRecord::Base
-# Connects this user object to Hydra behaviors.
- include Hydra::User# Connects this user object to Sufia behaviors.
- include Sufia::User
+  # Connects this user object to Hydra behaviors.
+  include Hydra::User
+  # Connects this user object to Sufia behaviors.
+  include Sufia::User
 
-  attr_accessible :email, :password, :password_confirmation if Rails::VERSION::MAJOR < 4
-# Connects this user object to Blacklights Bookmarks.
+  # Connects this user object to Blacklights Bookmarks.
   include Blacklight::User
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
@@ -17,9 +17,4 @@ class User < ActiveRecord::Base
   def to_s
     email
   end
-
-  # TODO: If you want editing capability, give your users the admin group
-  #def groups
-  #  ['admin']
-  #end
 end

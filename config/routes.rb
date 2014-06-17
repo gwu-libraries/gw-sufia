@@ -1,4 +1,5 @@
 GwSufia::Application.routes.draw do
+  mount BrowseEverything::Engine => '/browse'
   root 'homepage#index'
 
   blacklight_for :catalog

@@ -1,4 +1,4 @@
-gw-sufia
+gw-sufia [![Build Status](https://travis-ci.org/gwu-libraries/gw-sufia.png?branch=master)](https://travis-ci.org/gwu-libraries/gw-sufia) [![Dependency Status](https://gemnasium.com/gwu-libraries/gw-sufia.png)](https://gemnasium.com/gwu-libraries/gw-sufia)
 ========
 
 GWU Self-Deposit

@@ -132,6 +132,10 @@ with each cloud provider separately:
     * Box: https://app.box.com/developers/services/edit/
     * GoogleDrive: https://code.google.com/apis/console
 
+  Note that the application must be configured with each of the above providers with a redirect URI of:
+  
+         https://<MY SERVER URL>:<PORT>/browse/connect
+
   Add this line to config/initializers/sufia.rb:
 
          config.browse_everything = BrowseEverything.config

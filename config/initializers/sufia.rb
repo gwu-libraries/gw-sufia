@@ -77,6 +77,9 @@ Sufia.config do |config|
 
   # Use Google Analytics for view/download stats
   config.analytics = false
+
+  # Enable browse_everything
+  config.browse_everything = BrowseEverything.config
 end
 
 Date::DATE_FORMATS[:standard] = "%m/%d/%Y"

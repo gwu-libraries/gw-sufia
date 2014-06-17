@@ -145,7 +145,7 @@ Additionally, once you create the client ID and google generates a client email 
 
 # Admin Users
 
-As a stopgap with the current rudimentary implementation of user groups, to make an admin user with id USERID do the following:
+As a stopgap with the current rudimentary implementation of user groups, to make an admin user with id USERID do the following at the rails console:
 
 ```ruby
 user = User.find(USERID)

@@ -81,13 +81,14 @@ Installation
         % mv server.key server.key.secure
         % mv server.key.insecure server.key
         Create a certificate signing request *In production deployments you should provide this CSR to your cerificate authority to generate a signed certificate*
-        % openssl req -new -key server.key -out server.csr
+        % openssl req -new -key server.key -out server.csr *this _may_ require sudo; try first without
         Create a self a signed certificate *Should not be used in production deployments*
         % openssl x509 -req -days 365 -in server.csr -signkey server.key -out server.crt
         
 * Start your thin server
 
-        % bundle exec thin start -p <port number> --ssl --ssl-key-file .ssl/server.key --ssl-cert-file .ssl/server.crt
+        % cd ..
+        % thin start -p <port number> --ssl --ssl-key-file .ssl/server.key --ssl-cert-file .ssl/server.crt
         
 * Verify that it's running
 

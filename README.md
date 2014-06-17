@@ -148,10 +148,6 @@ with each cloud provider separately:
   
         % cd fits-0.6.2
         % sudo chmod a+x fits.sh
-        
-   In config/initializers/sufia.rb, uncomment the line with config.fits_path and add your fits location:
-   
-        config.fits_path = "/usr/local/bin/fits-0.6.2/fits.sh"
 
 ### Start a Redis RESQUE pool
 

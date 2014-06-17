@@ -142,3 +142,13 @@ Additionally, once you create the client ID and google generates a client email 
   Run the included script to start a RESQUE pool for either the "production" or "development" environment.
   
         % RAILS_ENV=development rake resque:workers COUNT=3 QUEUE=* VERBOSE=1
+
+# Admin Users
+
+As a stopgap with the current rudimentary implementation of user groups, to make an admin user with id USERID do the following:
+
+```ruby
+user = User.find(USERID)
+user.group_list = "registered;?;admin"
+user.save
+```

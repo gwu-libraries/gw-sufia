@@ -31,3 +31,7 @@ jetty/
 
 # Ignore local SSL certificates and keys
 .ssl/
+
+# Ignore temp files
+public/system
+public/uploads

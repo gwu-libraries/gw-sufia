@@ -28,3 +28,6 @@ config/initializers/secret_token.rb
 
 # Ignore jetty
 jetty/
+
+# Ignore local SSL certificates and keys
+.ssl/

@@ -37,6 +37,8 @@ en:
       related_url:       "Related URL"
       rights:            "Content License"
       files:             "Upload Files"
+    directory:
+      suffix:            "@gwu.edu"
     search:
       form:
         q:

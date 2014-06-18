@@ -75,7 +75,7 @@ Sufia.config do |config|
   # config.id_namespace = "sufia"
 
   # Specify the path to the file characterization tool:
-  # config.fits_path = "fits.sh"
+  config.fits_path = "/usr/local/bin/fits-0.6.2/fits.sh"
 
   # Use Google Analytics for view/download stats
   config.analytics = false

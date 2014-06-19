@@ -63,7 +63,13 @@ Sufia.config do |config|
   config.queue = Sufia::Resque::Queue
 
   # Map hostnames onto Google Analytics tracking IDs
-  # config.google_analytics_id = 'UA-99999999-1'
+  begin
+    ga_yaml = YAML.load(File.read(File.join(Rails.root.to_s,'config','analytics.yml')))
+    config.google_analytics_id = ga_yaml["analytics"]["id"]
+    config.analytics = true
+  rescue
+    config.analytics = false
+  end
 
   # Where to store tempfiles, leave blank for the system temp directory (e.g. /tmp)
   # config.temp_file_base = '/home/developer1'
@@ -76,9 +82,6 @@ Sufia.config do |config|
 
   # Specify the path to the file characterization tool:
   config.fits_path = "/usr/local/bin/fits-0.6.2/fits.sh"
-
-  # Use Google Analytics for view/download stats
-  config.analytics = false
 end
 
 Date::DATE_FORMATS[:standard] = "%m/%d/%Y"

@@ -132,6 +132,8 @@ with each cloud provider separately:
   Note that the application must be configured with each of the above providers with a redirect URI of:
   
          https://<MY SERVER URL>:<PORT>/browse/connect
+  
+  Dropbox, Box, and Skydrive now require the redirect URI to be HTTPS, not HTTP.
 
 ### Install fits.sh
 
@@ -161,3 +163,13 @@ user = User.find(USERID)
 user.group_list = "registered;?;admin"
 user.save
 ```
+
+### Run the application
+
+  To run a development server in non-SSL mode:
+  
+         % rails s -p <PORT NUMBER>
+         
+  To run a development server in SSL mode:
+  
+         % thin start -p <PORT NUMBER> --ssl --ssl-key-file <PATH TO YOUR server.key FILE> --ssl-cert-file <PATH TO YOUR server.crt FILE>

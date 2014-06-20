@@ -169,8 +169,15 @@ user.save
   To run a development server in non-SSL mode:
   
          % rails s -p <PORT NUMBER>
+         
+  To run a development server in SSL mode:
+  
+         % thin start -p <PORT NUMBER> --ssl --ssl-key-file <PATH TO YOUR server.key FILE> --ssl-cert-file <PATH TO YOUR server.crt FILE>
 
-Production Deployment
+# ---------------------
+# Production Deployment
+# ---------------------
+
 # System Requirements
 A Virtual Server (VM) or Machine with at least:
   1.   64-bit architecture
@@ -855,9 +862,6 @@ Ubuntu: `sudo service tomcat7 restart`
 10. Restart apache using the command  
 Ubuntu: `sudo service apache2 restart`  
 
+
 # Verification Steps
 1. Open a browser and navigate to the home page of your application. You should see the default Sufia home page.
-         
-  To run a development server in SSL mode:
-  
-         % thin start -p <PORT NUMBER> --ssl --ssl-key-file <PATH TO YOUR server.key FILE> --ssl-cert-file <PATH TO YOUR server.crt FILE>

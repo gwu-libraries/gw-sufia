@@ -164,7 +164,7 @@ user.group_list = "registered;?;admin"
 user.save
 ```
 
-### Run the application
+# Run the application
 
   To run a development server in non-SSL mode:
   

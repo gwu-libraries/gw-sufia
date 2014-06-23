@@ -20,7 +20,28 @@ require 'capybara/rails'
 #
 # The `.rspec` file also contains a few flags that are not defaults but that
 # users commonly want.
-#
+
+# Set a global variable that can be used in conditionals
+$in_travis = !ENV['TRAVIS'].nil? && ENV['TRAVIS'] == 'true'
+
+if $in_travis
+  # Monkey-patches the FITS runner to return the PDF FITS fixture
+  module Hydra
+    module Derivatives
+      module ExtractMetadata
+        def extract_metadata
+          return unless has_content?
+          Hydra::FileCharacterization.characterize(content, filename_for_characterization, :fits) do |config|
+            config[:fits] = lambda { |filename|
+              File.read(File.expand_path("../fixtures/pdf_fits.xml", __FILE__))
+            }
+          end
+        end
+      end
+    end
+  end
+end
+
 # See http://rubydoc.info/gems/rspec-core/RSpec/Core/Configuration
 RSpec.configure do |config|
   config.include Devise::TestHelpers, :type => :controller

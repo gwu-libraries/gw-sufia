@@ -35,14 +35,15 @@ group :doc do
   gem 'sdoc', require: false
 end
 
-gem 'sufia', '4.0.0.rc1'
+gem 'sufia', github: 'projecthydra/sufia', ref: '852ff7d46f7'
 gem 'kaminari', github: 'harai/kaminari', branch: 'route_prefix_prototype'  # required to handle pagination properly in dashboard. See https://github.com/amatsuda/kaminari/pull/322
 
-gem 'bootstrap-sass'
+gem 'bootstrap-sass', '< 3.2'
 gem 'devise'
 gem 'devise-guests', '~> 0.3'
 
 group :development, :test do
+  gem 'byebug'
   gem 'rspec-rails', '~> 3.0.1'
   gem 'rspec-its'
   gem 'rspec-activemodel-mocks'

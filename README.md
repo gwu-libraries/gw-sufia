@@ -5,14 +5,13 @@ GWU Self-Deposit
 
 This is the repository for the George Washington University Libraries Sufia instance.
 
-
 Installation
 ------------
 
 ### Dependencies
 
 * Install ubuntu package dependencies:
-        
+
         % sudo apt-get update
         % sudo apt-get install git postgresql libpq-dev redis-server nodejs unzip openjdk-6-jre clamav-daemon curl imagemagick
 
@@ -21,18 +20,17 @@ Installation
         % curl -L https://get.rvm.io | bash -s stable
         % source ~/.rvm/scripts/rvm
         % rvm install ruby-2.1.1
-        
 
 ### Install
 
 * Get the gw-sufia code:
 
         % git clone https://github.com/gwu-libraries/gw-sufia.git
-        
+
 * Install gems
 
         % bundle install
-        
+
 * Create a postgresql user and three databases (e.g. sufia_dev, sufia_test, sufia_prod)
 
         % sudo su - postgres
@@ -49,7 +47,7 @@ Installation
 
         % cd gw-sufia/config
         % cp database.yml.template database.yml
-        
+
         Edit database.yml to add your specific database names and credentials
 
 * Create a secret_token.rb file and generate its secret token
@@ -84,17 +82,25 @@ Installation
         % openssl req -new -key server.key -out server.csr *this _may_ require sudo; try first without
         Create a self a signed certificate *Should not be used in production deployments*
         % openssl x509 -req -days 365 -in server.csr -signkey server.key -out server.crt
-        
+
 * Start your thin server
 
         % cd ..
         % thin start -p <port number> --ssl --ssl-key-file .ssl/server.key --ssl-cert-file .ssl/server.crt
-        
+
 * Verify that it's running
 
         % rails s -p <port number>
 
   And browse to the URL
+
+### Next: Full-text indexing
+
+Use the following rake task to pull the necessary extraction jars into the app:
+
+        % rake sufia:jetty:config
+
+Sufia should handle everything else for you.
 
 ### Next: Google Analytics
 
@@ -130,28 +136,28 @@ with each cloud provider separately:
     * GoogleDrive: https://code.google.com/apis/console
 
   Note that the application must be configured with each of the above providers with a redirect URI of:
-  
+
          https://<MY SERVER URL>:<PORT>/browse/connect
-  
+
   Dropbox, Box, and Skydrive now require the redirect URI to be HTTPS, not HTTP.
 
 ### Install fits.sh
 
   Go to http://code.google.com/p/fits/downloads/list and download a copy of fits to /usr/local/bin, and unpack it.
-  
+
         % cd /usr/local/bin
         % wget https://fits.googlecode.com/files/fits-0.6.2.zip
         % unzip fits-0.6.2.zip
 
   Add execute permissions to fits.sh
-  
+
         % cd fits-0.6.2
         % sudo chmod a+x fits.sh
 
 ### Start a Redis RESQUE pool
 
   Run the included script to start a RESQUE pool for either the "production" or "development" environment.
-  
+
         % RAILS_ENV=development rake resque:workers COUNT=3 QUEUE=* VERBOSE=1
 
 # Admin Users
@@ -167,9 +173,9 @@ user.save
 # Run the application
 
   To run a development server in non-SSL mode:
-  
+
          % rails s -p <PORT NUMBER>
-         
+
   To run a development server in SSL mode:
-  
+
          % thin start -p <PORT NUMBER> --ssl --ssl-key-file <PATH TO YOUR server.key FILE> --ssl-cert-file <PATH TO YOUR server.crt FILE>

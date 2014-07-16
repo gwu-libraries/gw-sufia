@@ -44,3 +44,7 @@ en:
         q:
           label:        "Search Collections"
           placeholder:  "Type search here..."
+    file:
+      collections_list:
+        heading:   "This file is in the following collections:"
+        empty:     "This file is not currently in any collections."

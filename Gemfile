@@ -35,7 +35,7 @@ group :doc do
   gem 'sdoc', require: false
 end
 
-gem 'sufia', github: 'projecthydra/sufia', ref: '4047ba9f0f48f66d30010823e34cc2501be5bb9e'
+gem 'sufia', github: 'projecthydra/sufia', ref: '48cef3281862b28e8b89885aba8bfc92c9965901'
 gem 'kaminari', github: 'harai/kaminari', branch: 'route_prefix_prototype'  # required to handle pagination properly in dashboard. See https://github.com/amatsuda/kaminari/pull/322
 
 gem 'bootstrap-sass', '< 3.2'

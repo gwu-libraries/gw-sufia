@@ -9,8 +9,8 @@ GIT
 
 GIT
   remote: git://github.com/projecthydra/sufia.git
-  revision: 4047ba9f0f48f66d30010823e34cc2501be5bb9e
-  ref: 4047ba9f0f48f66d30010823e34cc2501be5bb9e
+  revision: 48cef3281862b28e8b89885aba8bfc92c9965901
+  ref: 48cef3281862b28e8b89885aba8bfc92c9965901
   specs:
     sufia (4.0.0.rc1)
       blacklight (~> 5.5)
@@ -259,12 +259,11 @@ GEM
     jbuilder (1.5.3)
       activesupport (>= 3.0.0)
       multi_json (>= 1.2.0)
-    jettywrapper (1.7.0)
+    jettywrapper (1.8.1)
       activesupport (>= 3.0.0)
       childprocess
       i18n
       logger
-      mediashelf-loggable
     jquery-rails (3.1.1)
       railties (>= 3.0, < 5.0)
       thor (>= 0.14, < 2.0)

@@ -44,3 +44,4 @@ en:
         q:
           label:        "Search Collections"
           placeholder:  "Type search here..."
+    background_attribution: "Background image courtesy of George Washington University"

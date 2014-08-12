@@ -178,6 +178,8 @@ user.save
 # Production Deployment
 # ---------------------
 
+The following documentation has been adapted from the work of: https://github.com/curationexperts/hydradam/wiki/Production-Installation%3A-Overview to describe a deployment of the gw-sufia hydra implementaiton.
+
 ### System Requirements
 A Virtual Server (VM) or Machine with at least:
   1.   64-bit architecture

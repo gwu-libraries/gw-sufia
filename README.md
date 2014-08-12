@@ -866,3 +866,6 @@ Ubuntu: `sudo service apache2 restart`
 
 ### Verification Steps
 1. Open a browser and navigate to the home page of your application. You should see the default Sufia home page.
+
+### SSL and Shibboleth Setup
+Refer to the following repository for instructions to setup SSL on your server and confgure Shibboleth Service Provider daemon: https://github.com/gwu-libraries/shibboleth

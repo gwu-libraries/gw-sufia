@@ -154,7 +154,7 @@ with each cloud provider separately:
   
         % RAILS_ENV=development rake resque:workers COUNT=3 QUEUE=* VERBOSE=1
 
-# Admin Users
+### Admin Users
 
 As a stopgap with the current rudimentary implementation of user groups, to make an admin user with id USERID do the following at the rails console:
 
@@ -164,7 +164,7 @@ user.group_list = "registered;?;admin"
 user.save
 ```
 
-# Run the application
+### Run the application
 
   To run a development server in non-SSL mode:
   
@@ -178,17 +178,17 @@ user.save
 # Production Deployment
 # ---------------------
 
-# System Requirements
+### System Requirements
 A Virtual Server (VM) or Machine with at least:
   1.   64-bit architecture
   1.   15G of memory
   1.   10G of disk space on the root drive
   1.   30-300G of disk space on a drive mounted at /opt, depending on the files you plan to ingest - low end for images/text, high end for audio/video
 
-# Software Requirements
-  1. CentOS, Version 6.5 minimal install from any mirror [CentOS-6.5-x86_64-minimal.iso](http://isoredirect.centos.org/centos/6/isos/x86_64/) **OR** Ubuntu, Version 12.04 Its (Precise Pangolin)[ubuntu-12.04.3-server-amd64.iso](http://releases.ubuntu.com/precise/).
+### Software Requirements
+Ubuntu, Version 12.04 Its (Precise Pangolin)[ubuntu-12.04.3-server-amd64.iso](http://releases.ubuntu.com/precise/).
 
-# Steps
+### Steps
 1. Use bash as your shell.  
 2. Make sure your user has full sudo privileges (with or without password).   
 3. Check to be sure that your environment contains a $USER variable.  
@@ -207,26 +207,26 @@ sudo chown $USER:$USER /opt
 mkdir -p /opt/install
 ```
 
-# Verification Steps
+### Verification Steps
 `echo $USER` should return your current user name  
 `echo $HYDRA_NAME` should return "sufia"  
 `echo $RAILS_ENV` should return "production"
 
-# Notes
+### Notes
 These libraries provide the tools you need to download, compile, and configure packages required by Sufia.
 
-# Steps
-1. Install the following development tools & libraries for the Sufia project using your package manager (apt-get or yum). 
+### Steps
+1. Install the following development tools & libraries for the Sufia project using your package manager (apt-get). 
 
 Ubuntu:
 
 ```shell
 sudo apt-get update && sudo apt-get install build-essential git git-core curl openssl libreadline6 libreadline6-dev zlib1g zlib1g-dev libssl-dev libyaml-dev libsqlite3-dev sqlite3 libxml2-dev autoconf libc6-dev ncurses-dev automake libtool bison subversion pkg-config libmagickwand-dev imagemagick libcurl4-openssl-dev apache2-prefork-dev libxvidcore-dev postgresql libpq-dev redis-server unzip nodejs clamav-daemon openjdk-7-jdk tomcat7 ruby-bundler apache2-mpm-worker
 ```
-# Notes
+### Notes
 Ruby is the language of Sufia. Rubygems gives you access to the gems (dependencies, aka other people's code) Sufia needs.
 
-# Steps
+### Steps
 Ruby:  
 Especially on Ubuntu machines, Ruby 2.0 may be preinstalled. To verify which is installed, enter the command `which ruby` in the terminal window. This should return _/usr/local/bin/ruby_. Additionally, entering `ruby -v` should return _ruby 2.0.0-p353_.  
 
@@ -242,7 +242,7 @@ sudo make install
 cd /opt
 ```  
 
-# Verification Steps
+### Verification Steps
 You must have Ruby version 2.0.x and Rubygems version 2.x installed to complete the rest of the instructions. To verify that the correct versions are installed, use the following commands.  
 
 1. `which ruby`  
@@ -258,10 +258,10 @@ You must have Ruby version 2.0.x and Rubygems version 2.x installed to complete 
     The system should return _2.0.14_ 
     # Notes
 
-# Notes
+### Notes
 The Java 7 runtime environment is required to run Tomcat, Fedora, and Solr.  
 
-# Steps
+### Steps
 1. Verify that Java 7 is installed by entering the command `which java` in the terminal window. This should return _/usr/bin/java_. Additionally, entering `java -version` should return _java version 1.7.x_. If Java 7 is installed, proceed to Step 3.  
 
 2. You now need to configure your machine to use Java 7. Enter the command `sudo update-alternatives --config java` in the terminal window. You will see all available versions of Java. Select Java 7. The final output should look similar to this:  
@@ -274,13 +274,13 @@ The Java 7 runtime environment is required to run Tomcat, Fedora, and Solr.
 
    _Enter to keep the current selection[+], or type selection number: 1_  
 
-# Verification Steps
+### Verification Steps
 Enter the command `java -version` in the terminal window. This should return _java version 1.7.x_.
 
-# Notes
+### Notes
 Tomcat is the Java servlet that runs Fedora and Solr.
 
-# Steps  
+### Steps  
 1. Add the username you're using to install things to the tomcat group, by entering the following commands in the terminal window:  
    Ubuntu: `sudo usermod -G tomcat7 -a $USER`  
 2. Exit the terminal window and log back in to make sure the group changes take effect.  
@@ -290,16 +290,16 @@ Tomcat is the Java servlet that runs Fedora and Solr.
    *Stopping tomcat7:    [  OK  ]*  
    *Starting tomcat7:    [  OK  ]*  
 
-# Verification Steps
+### Verification Steps
 1. Test your tomcat installation by browsing to http://localhost:8080 or enter the command `curl localhost:8080` in the terminal window. You should see the default tomcat home page, announcing that "It Works!"
 2. Test your group membership to be sure it includes the tomcat or tomcat7 group. Enter the command `id` in the terminal window. The output should look like this:  
 *uid=500(user_name) gid=500(user_name) groups=500(user_name),91(tomcat),502(ssh)*  *context=unconfined_u:unconfined_r:unconfined_t:s0-s0:c0.c1023*  
    **Do not continue until your group membership is updated!**  
 
-# Notes
+### Notes
 Create two postgresql users (e.g. fedoradbadmin & sufiadbadmin) and two databases (e.g. fedora3 & sufia_prod)
 
-# Steps
+### Steps
         % sudo su - postgres
         (postgres)% psql
         postgres=# create user YOURSFMDBUSERNAME with createdb password 'YOURSFMDBPASSWORD';
@@ -308,10 +308,10 @@ Create two postgresql users (e.g. fedoradbadmin & sufiadbadmin) and two database
         (postgres)% createdb -O YOURSFMDBUSERNAME YOURPRODDBNAME
         (postgres)% exit
 
-# Notes
+### Notes
 Fedora stores the metadata and preservation information for objects your users will upload to Sufia.
 
-# Steps
+### Steps
 Note: You must have completed the installation of the SQL database before you can install Fedora.
 
 1. Ensure that the permissions on /opt are set correctly before you try to install Fedora by entering the command `sudo chown $USER:$USER /opt` in the terminal window.  
@@ -463,13 +463,13 @@ Note: You must have completed the installation of the SQL database before you ca
 (Ubuntu) `sudo service tomcat7 restart`  
 and give fedora a good minute or two to get started before you completing the verification steps below.
 
-# Verification Steps
+### Verification Steps
 1. To check fedora navigate to http://localhost:8080/fedora or enter the command `curl localhost:8080/fedora/describe` in the terminal window. You should see the address for the default fedora page (which should look similar to this: http://localhost:8080/fedora) in the output.  
 
-# Notes
+### Notes
 Solr indexes the content and metadata of your Sufia for quick and easy searching.
 
-# Steps
+### Steps
 We recommend installing all the components of the project in the directory /opt and as a result these instructions are designed to be copy/paste. However, if you want to name your project something other than 'Sufia' you'll need to make appropriate changes in steps 4 and 12. These instructions have been tested with solr 4.2 and may or may not work with later versions.
 
 **All commands are run in a terminal window unless otherwise specified.**
@@ -539,24 +539,24 @@ We recommend installing all the components of the project in the directory /opt 
   ```bash
   # If you are using Ubuntu, use this command.
   sudo chown -R tomcat7:tomcat7 /opt/solr
-
+  ``` 
 13. Link tomcat to the project xml file.
   ```bash
   # If you using Ubuntu, use this command
   sudo ln -s /opt/solr/$HYDRA_NAME/$HYDRA_NAME.xml /etc/tomcat7/Catalina/localhost/$HYDRA_NAME.xml
-
+  ``` 
 14. Solr uses SLF4J for logging, but you need to configure a logging framework yourself. This is required to make Solr run. For example to bind SLF4J to Apache log4j:
-
-# sudo cp /opt/install/solr-4.8.1/example/lib/ext/* /usr/share/tomcat7/lib
-# sudo cp /opt/install/solr-4.8.1/example/resources/log4j.properties /usr/share/tomcat7/lib
-
+  ```bash 
+  sudo cp /opt/install/solr-4.8.1/example/lib/ext/* /usr/share/tomcat7/lib
+  sudo cp /opt/install/solr-4.8.1/example/resources/log4j.properties /usr/share/tomcat7/lib
+  ```
 Edit /usr/share/tomcat7/lib/log4j.properties and set solr.log=logs/ to solr.log=/var/log/solr. Next create the log directory and set the proper permissions:
-
-# sudo mkdir /var/log/solr
-# sudo chown tomcat7:tomcat7 /var/log/solr
-
+  ```bash 
+  sudo mkdir /var/log/solr
+  sudo chown tomcat7:tomcat7 /var/log/solr
+  ```
 Make sure the log will not eat up the entire filesystem and add it to logrotate. Create a file "/etc/logrotate.d/solr" with this content:
-
+  ``` 
 /var/log/solr/solr.log {
   copytruncate
   daily
@@ -565,24 +565,24 @@ Make sure the log will not eat up the entire filesystem and add it to logrotate.
   missingok
   create 640 tomcat7 tomcat7
 }
-
+  ```
 15. Restart tomcat.
    ```bash
    # If you are using Ubuntu, use this command
    sudo service tomcat7 restart 
 ```  
 
-# Verification Steps
+### Verification Steps
 1. Check the solr admin page.
   ```bash
   curl localhost:8080/$HYDRA_NAME/
   ```
   The output should show the html of the solr home page.
 
-# Notes
+### Notes
 FITS retrieves xml metadata from the files you upload to Sufia, which allows you to harvest pre-existing metadata such as the file type.
 
-# Steps
+### Steps
 1. Change to the install directory.
   
   ```shell
@@ -607,9 +607,10 @@ FITS retrieves xml metadata from the files you upload to Sufia, which allows you
   sudo ln -s /usr/local/bin/fits.sh /usr/local/bin/fits
   ```
 
-# Verification Steps
+### Verification Steps
 1. 
-  #fits
+  ```bash   
+  fits
   Invalid CLI options
   usage: fits
    -h         print this message
@@ -621,10 +622,10 @@ FITS retrieves xml metadata from the files you upload to Sufia, which allows you
    -xc        output using a standard metadata schema and include FITS xml
   ```
 
-# Notes
+### Notes
 The Git repository contains the GW-Sufia-specific code. The Gems contain other people's code that we use in GW-Sufials. We are standing on the shoulders of giants here.
 
-# Steps
+### Steps
 1. Clone the Git repository and change directories by entering the following commands in the terminal window.
    ```shell    
    cd /opt  
@@ -641,15 +642,15 @@ The Git repository contains the GW-Sufia-specific code. The Gems contain other p
 
 4. Install project dependencies for deployment with bundler by entering the command `/usr/local/bin/bundle --deployment`. Note: This may take a while, but you should see the message "Your bundle is complete" at the end.
 
-# Verification Steps
+### Verification Steps
 1. Stay in your project home directory (/opt/$HYDRA_NAME) and enter the command `bundle exec rails console production`. You will see an interactive ruby (irb) prompt.
 1. Enter the command `Sufia::VERSION`. This should return version 3.5.0 or greater.
 1. Type `exit` to return to your regular shell prompt.  
 
-# Notes
+### Notes
 The YML files store the confidential information needed to connect the Sufia code to the other elements of the system, including Fedora, Solr, and Redis.
 
-# Steps
+### Steps
 You may review the sample .yml files for PostgrSQL, Fedora, Redis, and Solr in the/opt/$HYDRA_NAME/config directory. If you choose to edit them directly, use only the spacebar to create indentation as tabs are not allowed in YML syntax and will trigger a "found token that cannot start any token while scanning for the next token" error.
 
 1. Create a production database.yml file that points to your PostgreSQL database by entering the commands below.
@@ -685,13 +686,13 @@ Edit that file accordinly with your settings
    EOF
    ```
 
-# Verification Steps
+### Verification Steps
 1. Enter the command `ls -la /opt/$HYDRA_NAME/config` in the terminal window. This should return (among other files) database.yml, fedora.yml, redis.yml, and solr.yml. If you want to view the contents of each file, enter the command `less filename.yml`. To exit and return to the terminal window, type 'q'.  
 
-# Notes
+### Notes
 Apache and Passenger work together to serve up the Sufia web pages. Apache is the generic web server and  passenger (https://www.phusionpassenger.com/) manages the multiple processes Sufia (a ruby on rails app) generates.  
 
-# Steps
+### Steps
 1. The Apache server should already be installed as part of the Apache development package (one of the [[dependencies|Installation:-Dependencies]]).    
 
 2. (Ubuntu only) Install the passenger gem by entering the command `gem install passenger`.
@@ -820,10 +821,10 @@ Apache and Passenger work together to serve up the Sufia web pages. Apache is th
 
 8. Create the PassengerTempDir and XSendFile directories referred to in your passenger config by entering the command `mkdir /opt/passenger_temp /opt/xsendfile`.  
 
-# Notes
+### Notes
 Configure the Rails Application to make sure that all the parts of the system are working together. This step includes the secret token, the Fits path, Solr configuration, the temporary transcoding directory, storage management, and more.
 
-# Steps
+### Steps
 1. Enable the secret token for the site by completing the steps below.  
    1. Generate a string for the secret token by entering the command `cd /opt/$HYDRA_NAME && bundle exec rake secret` in the terminal window.  
    2. Copy /opt/$HYDRA_NAME/config/initializers/secret_token.rb.template to /opt/$HYDRA_NAME/config/initializers/secret_token.rb by entering the command `cp /opt/$HYDRA_NAME/config/initializers/secret_token.rb.template /opt/$HYDRA_NAME/config/initializers/secret_token.rb`.  
@@ -852,7 +853,7 @@ Configure the Rails Application to make sure that all the parts of the system ar
    cd /opt/$HYDRA_NAME  
    bundle exec rake db:migrate RAILS_ENV=production 
    bundle exec rake assets:precompile RAILS_ENV=production 
-
+   ``` 
 8. Make the Apache user own the passenger temp and xsendfile directories using the command  
 Ubuntu: `sudo chown www-data:www-data /opt/passenger_temp /opt/xsendfile`  
 
@@ -863,5 +864,5 @@ Ubuntu: `sudo service tomcat7 restart`
 Ubuntu: `sudo service apache2 restart`  
 
 
-# Verification Steps
+### Verification Steps
 1. Open a browser and navigate to the home page of your application. You should see the default Sufia home page.

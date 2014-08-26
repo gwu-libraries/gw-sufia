@@ -13,7 +13,7 @@ Installation
 * Install ubuntu package dependencies:
 
         % sudo apt-get update
-        % sudo apt-get install git postgresql libpq-dev redis-server nodejs unzip openjdk-6-jre clamav-daemon curl imagemagick
+        % sudo apt-get install git postgresql libpq-dev redis-server nodejs unzip openjdk-6-jre clamav-daemon curl imagemagick libapache2-mod-shib2
 
 * Install RVM
 
@@ -154,13 +154,13 @@ with each cloud provider separately:
         % cd fits-0.6.2
         % sudo chmod a+x fits.sh
 
-### Start a Redis RESQUE pool
+* Start a Redis RESQUE pool
 
   Run the included script to start a RESQUE pool for either the "production" or "development" environment.
 
         % RAILS_ENV=development rake resque:workers COUNT=3 QUEUE=* VERBOSE=1
 
-# Admin Users
+### Admin Users
 
 As a stopgap with the current rudimentary implementation of user groups, to make an admin user with id USERID do the following at the rails console:
 
@@ -170,7 +170,7 @@ user.group_list = "registered;?;admin"
 user.save
 ```
 
-# Run the application
+### Run the application
 
   To run a development server in non-SSL mode:
 
@@ -179,3 +179,46 @@ user.save
   To run a development server in SSL mode:
 
          % thin start -p <PORT NUMBER> --ssl --ssl-key-file <PATH TO YOUR server.key FILE> --ssl-cert-file <PATH TO YOUR server.crt FILE>
+
+# Configure Shibboleth
+
+* Enable the Apache2 Shibboleth module:
+  
+        % sudo a2enmod shib2
+
+* Generate a x.509 certificate for Shibboleth to use:
+
+        % sudo shib-keygen
+
+* Restart Apache2:
+ 
+        % sudo service apache2 restart
+        
+* Navigate to https://localhost/Shibboleth.sso/Metadata to download your Service Provider metadata file.  Provide this file to your idP or upload it to testshib.org/register.html for testing.
+  
+* Connfigure your shibboleth2.xml file or generate a test file from testshib.org/configure.html and upload it your instance.
+ 
+        % sudo vi /etc/shibboleth/shibboleth2.xml
+
+* Configure your attribute-map.xml file to expose the Shibboleth attributes you'd like to use.
+
+        % sudo vi /etc/shibboleth/attribute-map.xml
+
+* Generate self-signed certificates or signed certificates for SSL and configure an SSL vhost.
+
+* Add the following to your SSL vhost file:
+
+        <Location /secure>
+         # this Location directive is what redirects apache over to the IdP.
+         AuthType shibboleth
+         ShibRequestSetting requireSession 1
+         require valid-user
+        </Location>
+
+        
+* Restart Shibd & Apache2:
+ 
+        % sudo service shibd restart
+        % sudo service apache2 restart
+        
+* Verify your Shibboleth service provider installation by navigating to https://localhost/secure

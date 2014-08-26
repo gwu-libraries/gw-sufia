@@ -141,6 +141,16 @@ with each cloud provider separately:
 
   Dropbox, Box, and Skydrive now require the redirect URI to be HTTPS, not HTTP.
 
+### Configure Contact form emailing
+
+  In order to enable the contact form page to send email when the user clicks Send,
+set the following properties in config/initializers/sufia.rb :
+  * config.action_mailer.contact_email
+  * config.action_mailer.from_email
+
+Copy config/initializers/setup_mail.rb.template to config/initializers/setup_mail.rb .
+Set the SMTP credentials for the user as whom the app will send email.
+
 ### Install fits.sh
 
   Go to http://code.google.com/p/fits/downloads/list and download a copy of fits to /usr/local/bin, and unpack it.

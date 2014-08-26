@@ -16,6 +16,11 @@ GwSufia::Application.configure do
   # Don't care if the mailer can't send.
   config.action_mailer.raise_delivery_errors = false
 
+  # When setting this property to :smtp, also ensure
+  # additional config.action_mailer properties are 
+  # set in  ../initializers/setup_mail.rb
+  config.action_mailer.delivery_method = :smtp
+
   # Print deprecation notices to the Rails logger.
   config.active_support.deprecation = :log
 

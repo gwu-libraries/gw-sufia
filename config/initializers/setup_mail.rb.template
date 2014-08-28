@@ -1,0 +1,6 @@
+ActionMailer::Base.smtp_settings = {
+  address: "smtp.gmail.com",
+  user_name: "USERNAME@email.gwu.edu",
+  password: "PASSWORD",
+  authentication: :login
+}

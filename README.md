@@ -50,6 +50,20 @@ Installation
 
         Edit database.yml to add your specific database names and credentials
 
+* Create the solr.yml file
+
+        % cd gw-sufia/config
+        % cp solr.yml.template solr.yml
+
+        Edit solr.yml to add your specific names and credentials
+
+* Create the fedora.yml file
+
+        % cd gw-sufia/config
+        % cp fedora.yml.template fedora.yml
+
+        Edit fedora.yml to add your specific names and credentials
+
 * Create a secret_token.rb file and generate its secret token
 
         % cd initializers

@@ -11,6 +11,8 @@ before_script:
   - "cp config/database.yml.travis config/database.yml"
   - "cp config/browse_everything_providers.yml.template config/browse_everything_providers.yml"
   - "cp config/initializers/secret_token.rb.template config/initializers/secret_token.rb"
+  - "cp config/fedora.yml.template config/fedora.yml"
+  - "cp config/solr.yml.template config/solr.yml"
   - "bundle exec rake gw-sufia:generate_secret"
 notifications:
   email:

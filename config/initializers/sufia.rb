@@ -82,6 +82,13 @@ Sufia.config do |config|
 
   # Specify the path to the file characterization tool:
   config.fits_path = "/usr/local/bin/fits-0.6.2/fits.sh"
+
+  # These must be set in order for contact form emailing to work
+  # Specify the address to receive the Contact form emails
+  # config.contact_email = "send-site-feedback-to-me@email.gwu.edu"
+
+  # Address the Contact form emails will appear to be from.
+  # config.from_email = "researcher-self-deposit@gwu.edu"
 end
 
 Date::DATE_FORMATS[:standard] = "%m/%d/%Y"

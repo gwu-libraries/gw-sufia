@@ -1,6 +1,10 @@
 GwSufia::Application.configure do
   # Settings specified here will take precedence over those in config/application.rb.
 
+  # Enter your Shibboleth login/logout URLs here 
+  #  config.logout_url = "https://example.com/Shibboleth.sso/Logout"
+  #  config.login_url = "https://example.com/users/auth/shibboleth"
+  
   # Code is not reloaded between requests.
   config.cache_classes = true
 

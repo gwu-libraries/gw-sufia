@@ -13,7 +13,7 @@ Installation
 * Install ubuntu package dependencies:
 
         % sudo apt-get update
-        % sudo apt-get install git postgresql libpq-dev redis-server nodejs unzip openjdk-6-jre clamav-daemon curl imagemagick
+        % sudo apt-get install git postgresql libpq-dev redis-server nodejs unzip openjdk-6-jre clamav-daemon curl imagemagick libapache2-mod-shib2
 
 * Install RVM
 
@@ -164,7 +164,7 @@ Set the SMTP credentials for the user as whom the app will send email.
         % cd fits-0.6.2
         % sudo chmod a+x fits.sh
 
-### Start a Redis RESQUE pool
+* Start a Redis RESQUE pool
 
   Run the included script to start a RESQUE pool for either the "production" or "development" environment.
 

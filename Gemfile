@@ -6,6 +6,9 @@ gem 'rails', '4.0.5'
 # Use PostgreSQL as the database for Active Record
 gem 'pg'
 
+# Use Omniauth-Shibboleth for authentication federation
+gem 'omniauth-shibboleth'
+
 # Use Thin for SSL webserver
 gem 'thin'
 

@@ -903,11 +903,8 @@ Ubuntu: `sudo service apache2 restart`
 Refer to the following repository for instructions to setup SSL on your server and confgure Shibboleth Service Provider daemon: https://github.com/gwu-libraries/shibboleth
 
 ### GW Sufia Shibboleth Settings
-   ```shell
-   nano /config/environments/production.rb
-   ```
 
-Uncomment and edit the following with your Shibboleth login/logout URLS:
+Edit ```/config/environments/production.rb```.  Uncomment and edit the following with your Shibboleth login/logout URLs:
 
    ```shell
   #  config.logout_url = "https://example.com/Shibboleth.sso/Logout"

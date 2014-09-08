@@ -21,9 +21,9 @@
 
 en:
   blacklight:
-    application_name: "GwSufia"
+    application_name: "GW Scholarship"
   sufia:
-    product_name:       "GwSufia"
+    product_name:       "GW Scholarship"
     institution_name:   "George Washington University"
     institution_homepage_url: "#"
     division_name:      "Gelman Library"

@@ -11,10 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140519184050) do
-
-  # These are extensions that must be enabled in order to support this database
-  enable_extension "plpgsql"
+ActiveRecord::Schema.define(version: 20141026194821) do
 
   create_table "bookmarks", force: true do |t|
     t.integer  "user_id",     null: false
@@ -98,6 +95,15 @@ ActiveRecord::Schema.define(version: 20140519184050) do
   add_index "local_authority_entries", ["local_authority_id", "label"], name: "entries_by_term_and_label", using: :btree
   add_index "local_authority_entries", ["local_authority_id", "uri"], name: "entries_by_term_and_uri", using: :btree
 
+  create_table "mailboxer_conversation_opt_outs", force: true do |t|
+    t.integer "unsubscriber_id"
+    t.string  "unsubscriber_type"
+    t.integer "conversation_id"
+  end
+
+  add_index "mailboxer_conversation_opt_outs", ["conversation_id"], name: "index_mailboxer_conversation_opt_outs_on_conversation_id", using: :btree
+  add_index "mailboxer_conversation_opt_outs", ["unsubscriber_id", "unsubscriber_type"], name: "index_mailboxer_conversation_opt_outs_on_unsubscriber_id_type", using: :btree
+
   create_table "mailboxer_conversations", force: true do |t|
     t.string   "subject",    default: ""
     t.datetime "created_at",              null: false
@@ -123,6 +129,9 @@ ActiveRecord::Schema.define(version: 20140519184050) do
   end
 
   add_index "mailboxer_notifications", ["conversation_id"], name: "index_mailboxer_notifications_on_conversation_id", using: :btree
+  add_index "mailboxer_notifications", ["notified_object_id", "notified_object_type"], name: "index_mailboxer_notifications_on_notified_object_id_and_type", using: :btree
+  add_index "mailboxer_notifications", ["sender_id", "sender_type"], name: "index_mailboxer_notifications_on_sender_id_and_sender_type", using: :btree
+  add_index "mailboxer_notifications", ["type"], name: "index_mailboxer_notifications_on_type", using: :btree
 
   create_table "mailboxer_receipts", force: true do |t|
     t.integer  "receiver_id"
@@ -137,6 +146,32 @@ ActiveRecord::Schema.define(version: 20140519184050) do
   end
 
   add_index "mailboxer_receipts", ["notification_id"], name: "index_mailboxer_receipts_on_notification_id", using: :btree
+  add_index "mailboxer_receipts", ["receiver_id", "receiver_type"], name: "index_mailboxer_receipts_on_receiver_id_and_receiver_type", using: :btree
+
+  create_table "proxy_deposit_requests", force: true do |t|
+    t.string   "pid",                                   null: false
+    t.integer  "sending_user_id",                       null: false
+    t.integer  "receiving_user_id",                     null: false
+    t.datetime "fulfillment_date"
+    t.string   "status",            default: "pending", null: false
+    t.text     "sender_comment"
+    t.text     "receiver_comment"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "proxy_deposit_requests", ["receiving_user_id"], name: "index_proxy_deposit_requests_on_receiving_user_id", using: :btree
+  add_index "proxy_deposit_requests", ["sending_user_id"], name: "index_proxy_deposit_requests_on_sending_user_id", using: :btree
+
+  create_table "proxy_deposit_rights", force: true do |t|
+    t.integer  "grantor_id"
+    t.integer  "grantee_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "proxy_deposit_rights", ["grantee_id"], name: "index_proxy_deposit_rights_on_grantee_id", using: :btree
+  add_index "proxy_deposit_rights", ["grantor_id"], name: "index_proxy_deposit_rights_on_grantor_id", using: :btree
 
   create_table "searches", force: true do |t|
     t.text     "query_params"
@@ -196,9 +231,6 @@ ActiveRecord::Schema.define(version: 20140519184050) do
     t.string   "twitter_handle"
     t.string   "googleplus_handle"
     t.string   "display_name"
-    t.string   "provider"
-    t.string   "shibboleth_id"
-    t.string   "uid"
     t.string   "address"
     t.string   "admin_area"
     t.string   "department"
@@ -215,6 +247,9 @@ ActiveRecord::Schema.define(version: 20140519184050) do
     t.text     "group_list"
     t.datetime "groups_last_update"
     t.string   "linkedin_handle"
+    t.string   "uid"
+    t.string   "shibboleth_id"
+    t.string   "provider"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
@@ -229,8 +264,10 @@ ActiveRecord::Schema.define(version: 20140519184050) do
     t.datetime "updated_at"
   end
 
-  add_foreign_key "mailboxer_notifications", "mailboxer_conversations", name: "notifications_on_conversation_id", column: "conversation_id"
+  add_foreign_key "mailboxer_conversation_opt_outs", "mailboxer_conversations", name: "mb_opt_outs_on_conversations_id", column: "conversation_id"
 
-  add_foreign_key "mailboxer_receipts", "mailboxer_notifications", name: "receipts_on_notification_id", column: "notification_id"
+  add_foreign_key "mailboxer_notifications", "mailboxer_conversations", name: "notifications_on_conversation_id_development", column: "conversation_id"
+
+  add_foreign_key "mailboxer_receipts", "mailboxer_notifications", name: "mailboxer_receipts_on_notification_id_development", column: "notification_id"
 
 end

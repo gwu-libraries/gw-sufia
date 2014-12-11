@@ -38,8 +38,11 @@ group :doc do
   gem 'sdoc', require: false
 end
 
-gem 'sufia', '4.0.0'
-gem 'kaminari', github: 'harai/kaminari', branch: 'route_prefix_prototype'  # required to handle pagination properly in dashboard. See https://github.com/amatsuda/kaminari/pull/322
+# TODO: Restore & point at new version when the 4.1 release of Sufia is cut
+#gem 'sufia', '4.1'
+gem 'sufia', git: 'https://github.com/projecthydra/sufia.git', ref: '1c8879de85'
+
+gem 'kaminari', git: 'https://github.com/harai/kaminari.git', branch: 'route_prefix_prototype'  # required to handle pagination properly in dashboard. See https://github.com/amatsuda/kaminari/pull/322
 
 gem 'bootstrap-sass', '< 3.2'
 gem 'devise'

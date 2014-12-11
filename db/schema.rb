@@ -11,16 +11,22 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141026194821) do
+ActiveRecord::Schema.define(version: 20141029234353) do
+
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
 
   create_table "bookmarks", force: true do |t|
-    t.integer  "user_id",     null: false
+    t.integer  "user_id",       null: false
     t.string   "document_id"
     t.string   "title"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "user_type"
+    t.string   "document_type"
   end
+
+  add_index "bookmarks", ["user_id"], name: "index_bookmarks_on_user_id", using: :btree
 
   create_table "checksum_audit_logs", force: true do |t|
     t.string   "pid"
@@ -68,6 +74,26 @@ ActiveRecord::Schema.define(version: 20141026194821) do
 
   add_index "featured_works", ["generic_file_id"], name: "index_featured_works_on_generic_file_id", using: :btree
   add_index "featured_works", ["order"], name: "index_featured_works_on_order", using: :btree
+
+  create_table "file_download_stats", force: true do |t|
+    t.datetime "date"
+    t.integer  "downloads"
+    t.string   "file_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "file_download_stats", ["file_id"], name: "index_file_download_stats_on_file_id", using: :btree
+
+  create_table "file_view_stats", force: true do |t|
+    t.datetime "date"
+    t.integer  "views"
+    t.string   "file_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "file_view_stats", ["file_id"], name: "index_file_view_stats_on_file_id", using: :btree
 
   create_table "follows", force: true do |t|
     t.integer  "followable_id",                   null: false

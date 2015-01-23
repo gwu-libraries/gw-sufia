@@ -36,6 +36,6 @@ class Ability
 
   # TODO: Point this at the right group (perhaps something stored in LDAP?)
   def admin_user?
-    user_groups.include? 'registered'
+    user_groups.include? 'CN=GWL-SufiaAdmins-GG,OU=Groups,OU=GWL,OU=GWResources,DC=eadtst,DC=gwu,DC=edu'
   end
 end

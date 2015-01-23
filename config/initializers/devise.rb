@@ -240,7 +240,8 @@ Devise.setup do |config|
                          },
                          :extra_fields => [
                                  :affiliation,
-                                 :"Shib-Session-ID"
+                                 :"Shib-Session-ID",
+				 :member
 
                          ],
                          :debug => false

@@ -23,8 +23,11 @@ class User < ActiveRecord::Base
       user.display_name = auth[:info][:first_name] + auth[:info][:last_name]
       user.affiliation = auth[:extra][:raw_info][:affiliation]
       user.shibboleth_id = auth[:extra][:raw_info][:"Shib-Session-ID"]
+      user.group_list = auth[:extra][:raw_info][:member]
+      user.group_last_update = Time.now
     end
   end
+  
   def self.new_with_session(params, session)
     super.tap do |user|
       if data = session["devise.shibboleth_data"] && session["devise.shibboleth_data"]["extra"]["raw_info"]
@@ -32,4 +35,5 @@ class User < ActiveRecord::Base
       end
     end
   end
+
 end

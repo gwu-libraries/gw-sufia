@@ -29,6 +29,7 @@ Installation
 
 * Install gems
 
+        % cd gw-sufia
         % bundle install
 
 * Create a postgresql user and three databases (e.g. sufia_dev, sufia_test, sufia_prod)

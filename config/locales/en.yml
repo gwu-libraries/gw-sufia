@@ -21,12 +21,12 @@
 
 en:
   blacklight:
-    application_name: "GW Scholarship"
+    application_name: "GW Scholar Space"
   sufia:
-    product_name:       "GW Scholarship"
+    product_name:       "GW Scholar Space"
     institution_name:   "George Washington University"
     institution_homepage_url: "#"
-    division_name:      "Gelman Library"
+    division_name:      "GW Libraries"
     division_homepage_url:   "/"
     upload_tooltip:   "Please accept Deposit Agreement before you can upload."
     field_label:
@@ -46,5 +46,5 @@ en:
           placeholder:  "Type search here..."
         option:
           all:
-            label_long:   "All of GW Scholarship"
+            label_long:   "All of GW Scholar Space"
     background_attribution: "Background image courtesy of George Washington University"

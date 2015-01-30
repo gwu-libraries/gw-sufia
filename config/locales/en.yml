@@ -21,9 +21,9 @@
 
 en:
   blacklight:
-    application_name: "GW Scholar Space"
+    application_name: "GW ScholarSpace"
   sufia:
-    product_name:       "GW Scholar Space"
+    product_name:       "GW ScholarSpace"
     institution_name:   "George Washington University"
     institution_homepage_url: "#"
     division_name:      "GW Libraries"
@@ -46,5 +46,5 @@ en:
           placeholder:  "Type search here..."
         option:
           all:
-            label_long:   "All of GW Scholar Space"
+            label_long:   "All of GW ScholarSpace"
     background_attribution: "Background image courtesy of George Washington University"

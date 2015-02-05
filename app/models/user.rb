@@ -16,15 +16,19 @@ class User < ActiveRecord::Base
   def to_s
     email
   end
-  
+
   def self.from_omniauth(auth)
-    where(auth.slice(:provider, :uid)).first_or_create do |user|
+    where(auth.slice(:provider, :uid)).first_or_create.tap do |user|
       user.email = auth[:info][:email]
       user.display_name = auth[:info][:first_name] + auth[:info][:last_name]
       user.affiliation = auth[:extra][:raw_info][:affiliation]
       user.shibboleth_id = auth[:extra][:raw_info][:"Shib-Session-ID"]
+      user.group_list = auth[:extra][:raw_info][:member]
+      user.groups_last_update = Time.now
+      user.save
     end
   end
+  
   def self.new_with_session(params, session)
     super.tap do |user|
       if data = session["devise.shibboleth_data"] && session["devise.shibboleth_data"]["extra"]["raw_info"]

@@ -3,7 +3,7 @@ gw-sufia [![Build Status](https://travis-ci.org/gwu-libraries/gw-sufia.png?branc
 
 GWU Self-Deposit
 
-This is the repository for the George Washington University Libraries Sufia instance.
+This is the repository for the George Washington University Libraries Sufia 4 based application, built as a pilot project.  A new application, [GW ScholarSpace](http://scholarspace.library.gwu.edu/), based on Sufia 6 has been developed and deployed -- please see https://github.com/gwu-libraries/scholarspace 
 
 Installation
 ------------
